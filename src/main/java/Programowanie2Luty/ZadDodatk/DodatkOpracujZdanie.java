@@ -7,9 +7,9 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 
-public class OpracujZdanie {
+public class DodatkOpracujZdanie {
 
-    private OpracujZdanie() {
+    private DodatkOpracujZdanie() {
     }
 
     public static int dajIloscLiterWzdaniu( String zdanie ){
@@ -40,7 +40,7 @@ public class OpracujZdanie {
 
         return "Małych liter użyto: " + male + "\n" + "Dużych liter użyto: " + duze;
     }
-    public static String medianaCiaguDlugosciWyrazow(String tegoZdania){
+    static String medianaCiaguDlugosciWyrazow(String tegoZdania){
         String[] litery = tegoZdania.split("");
 
         StringBuilder podzialWyrazow = new StringBuilder();

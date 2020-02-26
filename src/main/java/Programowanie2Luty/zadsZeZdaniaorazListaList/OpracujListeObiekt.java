@@ -3,19 +3,24 @@ package Programowanie2Luty.zadsZeZdaniaorazListaList;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class OpracujListeObiekt {
+class OpracujListeObiekt {
+    static OpracujListeObiekt INSTANCE;
 
     private OpracujListeObiekt() {
     }
 
+    static OpracujListeObiekt getINSTANCE() {
+        if (INSTANCE == null){
+            INSTANCE = new OpracujListeObiekt();
+        }
+        return INSTANCE;
+    }
 
-
-    public static Long dajDominanteZListyLong( List<List<Long>> listaListLiczb){
-         Map<Long, List<Long>> wynik = listaListLiczb.stream()
+    Long dajDominanteZListyLong(final List<List<Long>> listaListLiczb){
+         final Map<Long, List<Long>> wynik = listaListLiczb.stream()
                 .flatMap( Collection::stream )
                 .collect(Collectors.groupingBy( liczba -> liczba ));
 
-        System.out.println(wynik);
 
         return wynik.entrySet().stream()
                  .sorted(new Comparator<Map.Entry<Long, List<Long>>>() {
@@ -30,12 +35,12 @@ public class OpracujListeObiekt {
 
     }
 
-    public static double dajSredniaDlugoscSlowa( List<List<String>> zbioryListSlow){
-        String calosc = zbioryListSlow.stream().flatMap( Collection::stream ).collect(Collectors.joining(" "));
+    double dajSredniaDlugoscSlowa(final List<List<String>> zbioryListSlow){
+        final String calosc = zbioryListSlow.stream().flatMap( Collection::stream ).collect(Collectors.joining(" "));
 
-        return (double)Arrays.stream(calosc.split(" "))
-                .mapToInt( String::length )
-                .sum() / (double)calosc.split(" ").length ;
+        return Arrays.stream(calosc.split(" "))
+                .mapToDouble( String::length )
+                .sum() / calosc.split(" ").length ;
     }
 
 }

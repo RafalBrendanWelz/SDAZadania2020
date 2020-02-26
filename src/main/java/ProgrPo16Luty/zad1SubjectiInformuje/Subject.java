@@ -6,26 +6,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class Subject{
-    int wartosc;
-    List<Obserwujacy> obserwujacy;
+class Subject{
+    private int wartosc;
+    private List<Obserwujacy> obserwujacy;
 
-    public Subject(final int wartosc) {
+    Subject(final int wartosc) {
         this.wartosc = wartosc;
         this.obserwujacy = new ArrayList<>();
     }
 
-    public void zmienWartosc(int nowa){
+    void zmienWartosc(final int nowa){
         this.wartosc = nowa;
-        poinformuj();
+        poinformujCalaLista();
     }
 
-    public void dodajObserwujacego(final Obserwujacy nowy ){
+    void dodajObserwujacego(final Obserwujacy nowy){
         this.obserwujacy.add(nowy);
     }
 
-    public void poinformuj( ){
-        this.obserwujacy.forEach( obs -> obs.reactToInfo() );
+    private void poinformujCalaLista(){
+        this.obserwujacy.forEach(Obserwujacy::reactToInfo);
     }
 
 

@@ -5,18 +5,13 @@ import lombok.Getter;
 
 @Getter
 public abstract class Obserwujacy {
-    private final Subject master;
+    protected final Subject celObserwacji;
     private String nazwa;
-    private int wartoscStara;
 
-    public Obserwujacy(final Subject master, final String nazwa) {
-        this.master = master;
+    public Obserwujacy(final Subject celObserwacji, final String nazwa) {
+        this.celObserwacji = celObserwacji;
         this.nazwa = nazwa;
-        master.dodajObserwujacego(this);
-    }
-
-    public void setWartoscStara(final int wartoscStara) {
-        this.wartoscStara = wartoscStara;
+        celObserwacji.dodajObserwujacego(this);
     }
 
     public abstract void reactToInfo();

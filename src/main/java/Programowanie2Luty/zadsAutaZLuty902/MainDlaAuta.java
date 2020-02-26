@@ -8,20 +8,18 @@ public class MainDlaAuta {
         ToyotaCorolla pierwszeAudi = new ToyotaCorolla();
 
         System.out.println(pierwszeAudi.czyZepsSiln);
-        System.out.println(pierwszeAudi.getIloscKoni());
-        System.out.println(pierwszeAudi.getModelSiln());
         System.out.println(pierwszeAudi.getNazwaModelu());
 
         pierwszeAudi.startEngine();
         pierwszeAudi.startEngine();
         pierwszeAudi.startEngine();
 
-        ParkingLot bestMiejsce = new ParkingLot();
-        bestMiejsce.zaparkuj(pierwszeAudi);
-        Optional<AutoGeneryczne> samochodZParkingu = bestMiejsce.wyparkuj();
+        ParkingLot bestParking = new ParkingLot();
+        bestParking.zaparkuj(pierwszeAudi);
+        Optional<AutoGeneryczne> samochodZParkingu = bestParking.wyparkuj(pierwszeAudi);
         samochodZParkingu.ifPresent(autoGeneryczne -> System.out.println(autoGeneryczne.nazwaModelu));
 
-        samochodZParkingu = bestMiejsce.wyparkuj();
+        samochodZParkingu = bestParking.wyparkuj(pierwszeAudi);
         samochodZParkingu.ifPresent(autoGeneryczne -> System.out.println(autoGeneryczne.nazwaModelu));
 
     }

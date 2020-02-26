@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class OpracujListyObiekt {
+public class DodatkDominantZListyList {
 
 
-    public static Long dajDominantZLong (List<List<Long>> listaLong){
+    static Long dajDominantZLong(List<List<Long>> listaLong){
 
         Map<Long, Integer> mapaWystapien = listaLong.stream()
                 .flatMap( Collection::stream )

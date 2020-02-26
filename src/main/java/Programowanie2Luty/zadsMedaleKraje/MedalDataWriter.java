@@ -9,12 +9,12 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class MedalDataWriter {
+class MedalDataWriter {
 
-    private MedalDataWriter() {
+    MedalDataWriter() {
     }
 
-    public static void zapiszALLstatsMedaliKrajiDoPlik(String sciezkaDoPlik, List<ZbiorMedaliKraju> ListaMKDoStats ) throws IOException {
+    void zapiszALLstatsMedaliKrajiDoPlik(String sciezkaDoPlik, List<ZbiorMedaliKraju> ListaMKDoStats ) throws IOException {
         Path sciezka = Path.of(sciezkaDoPlik);
 
         Map<String, List<String>> statystyka = dajStatystyke(ListaMKDoStats); //key - typ statystyki, value - lista wartosci danej statystyki

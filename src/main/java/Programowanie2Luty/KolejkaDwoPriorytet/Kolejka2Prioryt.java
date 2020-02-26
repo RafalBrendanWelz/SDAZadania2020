@@ -6,13 +6,13 @@ import java.util.*;
 
 public class Kolejka2Prioryt <T, V extends Comparable<V>, K extends Comparable<K>> extends AbstractQueue {
     private LinkedList<Ele2Prioryt<T, V, K> > kolejka;
-    private V defaultGlowny;
-    private K defaultDodatk;
+    private V mainPriority;
+    private K secondaryPriority;
 
 
-    public Kolejka2Prioryt(V domyslnyGlow, K domyslnyDodat) {
-        this.defaultGlowny = domyslnyGlow;
-        this.defaultDodatk = domyslnyDodat;
+    public Kolejka2Prioryt(V domyslnyGlow, K domyslnyDodatkowy) {
+        this.mainPriority = domyslnyGlow;
+        this.secondaryPriority = domyslnyDodatkowy;
         this.kolejka = new LinkedList<>();
     }
 
@@ -133,10 +133,10 @@ public class Kolejka2Prioryt <T, V extends Comparable<V>, K extends Comparable<K
         return true;
     }
     public boolean oferuj(final T wartosc) {
-        return this.oferuj(wartosc, defaultGlowny, defaultDodatk);
+        return this.oferuj(wartosc, mainPriority, secondaryPriority);
     }
     public boolean oferuj(final T wartosc, final V priorytGlowny) {
-        return this.oferuj(wartosc, priorytGlowny, defaultDodatk);
+        return this.oferuj(wartosc, priorytGlowny, secondaryPriority);
     }
 
 
