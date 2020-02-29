@@ -1,0 +1,53 @@
+package ProgrPo16Luty.zad3LiczbyGenIPodziel;
+
+
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class zad3Demo {
+    private static final int ILOSC_LOSOWYCH_LICZB = 100000;
+    private static final int MAX_WIELKOSC_LICZBY = 100000;
+
+    public static void main(String[] args) {
+        List<Integer> losoweLiczby = giveListofALLRandomNumbers();
+        app2Dzielniki sprawdzaniePodzielnosci = new app2Dzielniki.appBuilder().setDzielnik(4).setDrugiDzielnik(3).build().orElseThrow();
+
+        Thread watek2 = new Thread( new checkPodzielnoscRunnable(whichDzielnikApp2Dzielniki.SECOND, sprawdzaniePodzielnosci, losoweLiczby) );
+        Thread watek1 = new Thread( new checkPodzielnoscRunnable(whichDzielnikApp2Dzielniki.FIRST, sprawdzaniePodzielnosci, losoweLiczby) );
+
+        watek1.start();
+        watek2.start();
+    }
+    private static List<Integer> giveListofALLRandomNumbers(){
+        return Stream.generate( () -> new Random().nextInt(MAX_WIELKOSC_LICZBY) )
+                .limit(ILOSC_LOSOWYCH_LICZB).collect(Collectors.toList());
+    }
+
+
+    private static class checkPodzielnoscRunnable implements Runnable{
+        private whichDzielnikApp2Dzielniki jakiDzielnik;
+        private app2Dzielniki runWithThisApp;
+        private List<Integer> naLiczbach;
+
+        public checkPodzielnoscRunnable(final whichDzielnikApp2Dzielniki jakiDzielnik, final app2Dzielniki runWithThisApp, final List<Integer> naLiczbach) {
+            this.jakiDzielnik = jakiDzielnik;
+            this.runWithThisApp = runWithThisApp;
+            this.naLiczbach = naLiczbach;
+        }
+
+        @Override
+        public void run() {
+            for (int i = 0; i < ILOSC_LOSOWYCH_LICZB; i++) {
+                if ( runWithThisApp.isPodzielne( naLiczbach.get(i), jakiDzielnik) ){
+                    System.out.println("Liczba nr." + i + " (" + naLiczbach.get(i) + ") jest podzielna przez " +
+                            ( (jakiDzielnik == whichDzielnikApp2Dzielniki.SECOND) ? (runWithThisApp.getDzielnik2()) : (runWithThisApp.getDzielnik1())) );
+                }
+            }
+        }
+    }
+
+
+
+}

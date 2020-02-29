@@ -29,7 +29,7 @@ public class  ParkingLot<T extends AutoGeneryczne> {
         }
     }
 
-    public void odholujNiesprawne(Mechanic obslugaParking){
+    public void odholujNiesprawne(final Mechanic obslugaParking){
         this.parkedCars.forEach( (auto) -> {
 
             if ( !obslugaParking.tryFixCar(auto) ) {
